@@ -1,0 +1,18 @@
+
+jobs:
+  - job: testingDownloadPipelineArtifact
+    displayName: 'testing pipelines'
+    pool:
+      vmImage: 'ubuntu-16.04'
+    steps:
+      - task: DownloadPipelineArtifact@1
+        displayName: 'Download server artifact files'
+        inputs:
+          buildType: 'specific'
+          project: 'test mariadb ent'
+          pipeline: 'rusher.MariaDBEnterprise'
+          artifactName: 'ent-pipe-ubuntu-1604'
+          #buildVersionToDownload: 'latest'
+          buildId: 1
+          buildVersionToDownload: 'specific'
+          downloadPath: $(System.DefaultWorkingDirectory)
